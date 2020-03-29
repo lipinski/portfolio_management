@@ -41,3 +41,19 @@ def drawdowns(return_series: pd.Series, money: int = 1):
         'previous_peak': previous_peak,
         'drawdowns': drawdowns
     })
+
+
+def skewness(r):
+    demeaned_r = r - r.mean()
+    # the population standard deviation
+    sigma_r = r.std(ddof=0)
+    exp = (demeaned_r ** 3).mean()
+    return exp/sigma_r ** 3
+
+
+def kurtosis(r):
+    demeaned_r = r - r.mean()
+    # the population standard deviation
+    sigma_r = r.std(ddof=0)
+    exp = (demeaned_r ** 4).mean()
+    return exp/sigma_r ** 4
