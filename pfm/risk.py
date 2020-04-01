@@ -57,3 +57,13 @@ def kurtosis(r):
     sigma_r = r.std(ddof=0)
     exp = (demeaned_r ** 4).mean()
     return exp/sigma_r ** 4
+
+
+def annualize_rets(r, periods_per_year):
+    compounded_growth = (1+r).prod()
+    n_periods = r.shape[0]
+    return compounded_growth ** (periods_per_year / n_periods) - 1
+
+
+def annualize_vol(r, periods_per_year):
+    return r.std() * (periods_per_year ** 0.5)    
